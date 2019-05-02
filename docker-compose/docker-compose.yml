@@ -172,9 +172,17 @@ services:
                 -Djavax.net.ssl.keyStoreType=JCEKS
                 -Djavax.net.ssl.trustStoreType=JCEKS
                 -Dsolr.ssl.checkPeerName=false
+                -Dalfresco.encryption.ssl.keystore.location=/opt/alfresco-search-services/keystore/ssl.repo.client.keystore
+                -Dalfresco.encryption.ssl.keystore.passwordFileLocation=/opt/alfresco-search-services/keystore/ssl-keystore-passwords.properties
+                -Dalfresco.encryption.ssl.keystore.type=JCEKS
+                -Dalfresco.encryption.ssl.truststore.location=/opt/alfresco-search-services/keystore/ssl.repo.client.truststore
+                -Dalfresco.encryption.ssl.truststore.passwordFileLocation=/opt/alfresco-search-services/keystore/ssl-truststore-passwords.properties
+                -Dalfresco.encryption.ssl.truststore.type=JCEKS
             "
         ports:
             - 8083:8983 #Browser port
+        volumes:
+            - ./keystore:/opt/alfresco-search-services/keystore
 
     activemq:
         image: alfresco/alfresco-activemq:5.15.8

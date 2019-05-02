@@ -4,10 +4,12 @@ ARG SOLR_HOME=/opt/alfresco-search-services
 
 USER root
 
-COPY keystore ${SOLR_HOME}/keystore
+RUN mkdir ${SOLR_HOME}/keystore
 COPY solrcore.properties ${SOLR_HOME}/solrhome/templates/rerank/conf/solrcore.properties
 
 RUN chown -R solr:solr ${SOLR_HOME}/keystore
 RUN chown -R solr:solr ${SOLR_HOME}/solrhome/templates/rerank/conf/solrcore.properties
 
 USER solr
+
+VOLUME ["${SOLR_HOME}/keystore"]
