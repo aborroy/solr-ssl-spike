@@ -163,8 +163,7 @@ services:
             SOLR_SSL_KEY_STORE: "/opt/alfresco-search-services/keystore/ssl.repo.client.keystore"
             SOLR_SSL_KEY_STORE_PASSWORD: "kT9X6oe68t"
             SOLR_SSL_KEY_STORE_TYPE: "JCEKS"
-            SOLR_SSL_NEED_CLIENT_AUTH: "false"
-            SOLR_SSL_WANT_CLIENT_AUTH: "false"
+            SOLR_SSL_NEED_CLIENT_AUTH: "true"
             #Create the default alfresco and archive cores
             SOLR_CREATE_ALFRESCO_DEFAULTS: "alfresco,archive"
             SOLR_JAVA_MEM: "-Xms2g -Xmx2g"

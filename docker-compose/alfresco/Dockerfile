@@ -1,4 +1,4 @@
-FROM alfresco/alfresco-content-repository:6.1.0
+FROM alfresco/alfresco-content-repository:latest
 
 USER root
 
