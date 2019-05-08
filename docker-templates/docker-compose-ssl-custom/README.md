@@ -28,6 +28,34 @@ Also an *SSL Tool* is provided in order to generated required *truststores*, *ke
     └── run.sh
 ```
 
+Alfresco repository is configured to use SSL/TLS with SOLR.
+
+```
+alfresco:
+    image: alfresco/alfresco-content-repository:latest
+    environment:
+        JAVA_OPTS: "
+            -Dsolr.secureComms=https
+```
+
+SOLR is configured to use plain SSL/TLS with Alfresco, including a custom password for keystore and truststore and an external `volume` for store files.
+
+```
+solr6:
+       image: searchservices:develop
+       environment:
+           SOLR_ALFRESCO_HOST: "alfresco"
+           SOLR_ALFRESCO_PORT: "8443"
+           SOLR_USE_SSL: "true"
+           SOLR_SSL_KEY_STORE_PASSWORD: "password"
+           SOLR_SSL_TRUST_STORE_PASSWORD: "password"
+           SOLR_OPTS: "
+               -Dsolr.ssl.checkPeerName=false
+           "
+       volumes:
+           - ./keystore:/opt/alfresco-search-services/solr/keystores
+```
+
 ## Building Search Services Docker Image
 
 This project is using an *internal* Search Services Docker Image (currently living at `fix/MNT-20593_SSLByDefault` branch), so it's required to build it before starting.

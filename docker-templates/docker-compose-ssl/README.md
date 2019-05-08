@@ -25,6 +25,31 @@ Every *truststores*, *keystores* and *certificates* is copied from sources.
 └── docker-compose.yml
 ```
 
+Alfresco repository is configured to use SSL/TLS with SOLR.
+
+```
+alfresco:
+    image: alfresco/alfresco-content-repository:latest
+    environment:
+        JAVA_OPTS: "
+            -Dsolr.secureComms=https
+```
+
+SOLR is configured to use plain SSL/TLS with Alfresco.
+
+```
+solr6:
+    image: searchservices:develop
+    mem_limit: 2g
+    environment:
+        SOLR_ALFRESCO_HOST: "alfresco"
+        SOLR_ALFRESCO_PORT: "8443"
+        SOLR_USE_SSL: "true"
+        SOLR_OPTS: "
+            -Dsolr.ssl.checkPeerName=false
+        "
+```
+
 ## Building Search Services Docker Image
 
 This project is using an *internal* Search Services Docker Image (currently living at `fix/MNT-20593_SSLByDefault` branch), so it's required to build it before starting.

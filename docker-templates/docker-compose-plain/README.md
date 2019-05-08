@@ -10,6 +10,28 @@ These project describes a default configuration for Alfresco and SOLR to use Pla
 └── docker-compose.yml
 ```
 
+Alfresco repository is configured to use plain HTTP with SOLR.
+
+```
+alfresco:
+    image: alfresco/alfresco-content-repository:latest
+    environment:
+        JAVA_OPTS: "
+            -Dsolr.secureComms=none
+```
+
+SOLR is configured to use plain HTTP with Alfresco.
+
+```
+solr6:
+      image: searchservices:develop
+      environment:
+          SOLR_ALFRESCO_HOST: "alfresco"
+          SOLR_ALFRESCO_PORT: "8080"
+          # Optional, when not set "SOLR_USE_SSL = false" is assumed
+          # SOLR_USE_SSL: "false"
+```
+
 ## Building Search Services Docker Image
 
 This project is using an *internal* Search Services Docker Image (currently living at `fix/MNT-20593_SSLByDefault` branch), so it's required to build it before starting.
@@ -73,5 +95,5 @@ location /solr/ {
     proxy_set_header X-Real-IP       $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_pass_header Set-Cookie;
-} 
+}
 ```
