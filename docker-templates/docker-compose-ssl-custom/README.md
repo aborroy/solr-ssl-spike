@@ -6,7 +6,7 @@ Also an *SSL Tool* is provided in order to generated required *truststores*, *ke
 
 ## Components
 
-* **alfresco** includes a `Dockerfile` with *Tomcat Connector* configuration and *Keystore* folder mapping. Encryption `keystore` files (keystore, keystore-passwords.properties) are included from current sources code, as it's not required for this configuration but it's required for Repository to work.
+* **alfresco** includes a `Dockerfile` with *Tomcat Connector* configuration and *Keystore* folder mapping. `keystore` folder is empty by default.
 
 * **docker-compose.yml** includes a Docker Composition for latest Alfresco Repository and Internal Search Services (https://git.alfresco.com/search_discovery/searchservicesinternal)
 
@@ -21,8 +21,7 @@ Also an *SSL Tool* is provided in order to generated required *truststores*, *ke
 ├── alfresco
 │   ├── Dockerfile
 │   └── keystore
-│       ├── keystore
-│       └── keystore-passwords.properties
+│       └── empty
 ├── docker-compose.yml
 ├── keystore
 │   └── empty
@@ -62,6 +61,8 @@ $ ./run.sh
 $ tree keystores
 keystores
 ├── alfresco
+│   ├── keystore
+│   ├── keystore-passwords.properties
 │   ├── ssl-keystore-passwords.properties
 │   ├── ssl-truststore-passwords.properties
 │   ├── ssl.keystore

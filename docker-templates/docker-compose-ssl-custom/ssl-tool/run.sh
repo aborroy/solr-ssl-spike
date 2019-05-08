@@ -47,6 +47,10 @@ KEY_SIZE=1024
 # Default password for every store and key
 PASS=password
 
+# Encryption secret key passwords
+ENC_STORE_PASS=password
+ENC_METADATA_PASS=password
+
 # Folder where keystores, truststores and cerfiticates are generated
 KEYSTORES_DIR=keystores
 ALFRESCO_KEYSTORES_DIR=keystores/alfresco
@@ -121,6 +125,10 @@ keytool -importkeystore \
 keytool -importcert -noprompt -alias ssl.alfresco.ca -file ca/certs/ca.cert.pem \
 -keystore ${ALFRESCO_KEYSTORES_DIR}/ssl.keystore -storetype JCEKS -storepass $PASS
 
+# Generate Encryption Secret Key
+keytool -genseckey -alias metadata -keypass $ENC_METADATA_PASS -storepass $ENC_STORE_PASS -keystore ${ALFRESCO_KEYSTORES_DIR}/keystore \
+-storetype JCEKS -keyalg DESede
+
 # Create Alfresco stores password files
 ECHO "aliases=alfresco.ca
 keystore.password=$PASS
@@ -130,6 +138,12 @@ ECHO "aliases=ssl.alfresco.ca,ssl.repo
 keystore.password=$PASS
 ssl.repo.password=$PASS
 ssl.alfresco.ca.password=$PASS" > ${ALFRESCO_KEYSTORES_DIR}/ssl-keystore-passwords.properties
+
+ECHO "aliases=metadata
+keystore.password=$ENC_METADATA_PASS
+metadata.keyData=
+metadata.algorithm=DESede
+metadata.password=$ENC_STORE_PASS" > ${ALFRESCO_KEYSTORES_DIR}/keystore-passwords.properties
 
 #
 # SOLR
