@@ -159,7 +159,8 @@ services:
             #Create the default alfresco and archive cores
             SOLR_CREATE_ALFRESCO_DEFAULTS: "alfresco,archive"
             SOLR_JAVA_MEM: "-Xms2g -Xmx2g"
-            SOLR_USE_SSL: "false"
+            # Optional, when not set "SOLR_USE_SSL = false" is assumed
+            # SOLR_USE_SSL: "false"
         ports:
             - 8083:8983
 
