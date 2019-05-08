@@ -12,8 +12,6 @@ Also an *SSL Tool* is provided in order to generated required *truststores*, *ke
 
 * **keystore** folder is empty by default, it's used as a Docker VOLUME to provide truststores and keystores to SOLR Container
 
-* **solr6** includes a `Dockerfile` with SOLR Configuration to include customised store names and passwords (solr.in.sh)
-
 * **ssl-tool** includes a Shell Script (run.sh) to generate truststores, keystores and certificates. Also a default OpenSSL CA configuration is provided (openssl.conf).
 
 ```
@@ -25,9 +23,6 @@ Also an *SSL Tool* is provided in order to generated required *truststores*, *ke
 ├── docker-compose.yml
 ├── keystore
 │   └── empty
-├── solr6
-│   ├── Dockerfile
-│   └── solr.in.sh
 └── ssl-tool
     ├── openssl.cnf
     └── run.sh
