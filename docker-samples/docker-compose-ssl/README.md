@@ -22,12 +22,7 @@ Every *truststores*, *keystores* and *certificates* is copied from sources.
 │       ├── ssl-truststore-passwords.properties
 │       ├── ssl.keystore
 │       └── ssl.truststore
-├── docker-compose.yml
-└── keystore
-    ├── ssl-keystore-passwords.properties
-    ├── ssl-truststore-passwords.properties
-    ├── ssl.repo.client.keystore
-    └── ssl.repo.client.truststore
+└── docker-compose.yml
 ```
 
 ## Building Search Services Docker Image

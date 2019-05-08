@@ -159,13 +159,12 @@ services:
             #Create the default alfresco and archive cores
             SOLR_CREATE_ALFRESCO_DEFAULTS: "alfresco,archive"
             SOLR_JAVA_MEM: "-Xms2g -Xmx2g"
+            SOLR_USE_SSL: "true"
             SOLR_OPTS: "
                 -Dsolr.ssl.checkPeerName=false
             "
         ports:
             - 8083:8983
-        volumes:
-            - ./keystore:/opt/alfresco-search-services/solr/keystores
 
     activemq:
         image: alfresco/alfresco-activemq:5.15.8
