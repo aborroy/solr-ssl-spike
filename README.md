@@ -346,3 +346,26 @@ A draft implementation for these changes is available at https://git.alfresco.co
 ## Actions to be taken in the long term
 
 * Use AIS (Alfresco Identification Service) for both Repository and SOLR services adopting a common strategy for all the other services in the Platform
+
+
+# Docker Templates
+
+This project includes a catalog of [Docker Templates](https://git.alfresco.com/aborroy/solr-ssl-spike/tree/master/docker-templates) designed to test the configuration with the current release and the configuration with the actions adopted in the short term.
+
+**docker-compose-current**
+
+HTTPs Communication with mutual authentication between SOLR and Repository. Using currently Docker Images.
+
+**docker-compose-plain**
+
+HTTP Communication between SOLR and Repository. Using *Internal* Search Services Docker Image built from https://git.alfresco.com/search_discovery/searchservicesinternal/tree/fix/MNT-20593_SSLByDefault
+
+**docker-compose-ssl**
+
+HTTPs Communication with mutual authentication between SOLR and Repository. Using default stores and certificates. Using *Internal* Search Services Docker Image built from https://git.alfresco.com/search_discovery/searchservicesinternal/tree/fix/MNT-20593_SSLByDefault
+
+**docker-compose-ssl-custom**
+
+HTTPs Communication with mutual authentication between SOLR and Repository. Using custom stores and certificates. Using *Internal* Search Services Docker Image built from https://git.alfresco.com/search_discovery/searchservicesinternal/tree/fix/MNT-20593_SSLByDefault
+
+Generation tool based in `OpenSSL` and `keytool` for stores and certificates is included.
